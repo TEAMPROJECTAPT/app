@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Qrcode" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#111111</item>        <!-- 툴바/버튼 강조 색 -->
+        <item name="colorPrimaryDark">#000000</item>     <!-- 상태바 색상 -->
+        <item name="colorAccent">#444444</item>          <!-- 포커스, 포인터 등 액센트 -->
+    </style>
+</resources>
