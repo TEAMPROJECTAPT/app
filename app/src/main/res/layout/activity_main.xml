@@ -1,0 +1,91 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111"
+    android:padding="24dp">
+
+    <!-- 상단 텍스트 -->
+    <ImageView
+        android:id="@+id/textPromptImage"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/scan_your_qr_code"
+        android:contentDescription="Scan your QR Code title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="64dp" />
+
+    <!-- 카메라 프리뷰: 초기엔 안 보임 -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:visibility="gone"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@id/textPromptImage"
+        app:layout_constraintBottom_toTopOf="@id/btnScan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- QR 이미지 (카메라 실행 전) -->
+    <ImageView
+        android:id="@+id/qrPreviewImage"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/qr"
+        android:contentDescription="QR preview image"
+        app:layout_constraintTop_toBottomOf="@id/textPromptImage"
+        app:layout_constraintBottom_toTopOf="@id/btnScan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="48dp"
+        android:visibility="visible" />
+
+
+
+    <!-- 하단 버튼 -->
+    <FrameLayout
+        android:id="@+id/btnScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="64dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_background"
+            android:contentDescription="Button background" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/btn_label"
+            android:contentDescription="Scan QR Code" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#88000000"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
