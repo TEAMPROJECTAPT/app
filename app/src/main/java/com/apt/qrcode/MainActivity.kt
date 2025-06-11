@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         val thread = Thread {
             try {
                 val json = """{"url":"$url"}"""
-                val connection = java.net.URL("http://0.0.0.0:5000/receive_url")
+                val connection = java.net.URL("http://0.0.0.0:5000/receive_url") // 내부 IP 주소로 바꿔야함
                     .openConnection() as java.net.HttpURLConnection
 
                 connection.requestMethod = "POST"
