@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var previewView: PreviewView
     private lateinit var qrPreviewImage: ImageView
     private val requestCodePermissions = 1001
-    private var isScanned = false  // 중복 실행 방지
+    private var isScanned = false 
 
     private lateinit var loadingDialog: AlertDialog
 
@@ -39,8 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         previewView = findViewById(R.id.previewView)
         qrPreviewImage = findViewById(R.id.qrPreviewImage)
-        loadingOverlay = findViewById(R.id.loadingOverlay)  // ✅ 로딩 오버레이 연결
-
+        loadingOverlay = findViewById(R.id.loadingOverlay)  
         val btnScan = findViewById<FrameLayout>(R.id.btnScan)
         btnScan.setOnClickListener {
             if (allPermissionsGranted()) {
@@ -91,12 +90,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sendUrlToServer(url: String) {
-        loadingOverlay.visibility = View.VISIBLE  // ✅ 로딩 시작
+        loadingOverlay.visibility = View.VISIBLE  
 
         val thread = Thread {
             try {
                 val json = """{"url":"$url"}"""
-                val connection = java.net.URL("http://172.30.1.26:5000/receive_url")
+                val connection = java.net.URL("http://0.0.0.0:5000/receive_url")
                     .openConnection() as java.net.HttpURLConnection
 
                 connection.requestMethod = "POST"
@@ -110,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                 val response = connection.inputStream.bufferedReader().use { it.readText() }
 
                 runOnUiThread {
-                    loadingOverlay.visibility = View.GONE  // ✅ 로딩 종료
+                    loadingOverlay.visibility = View.GONE  
 
                     try {
                         val jsonResult = org.json.JSONObject(response)
@@ -129,7 +128,7 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 runOnUiThread {
-                    loadingOverlay.visibility = View.GONE  // ✅ 실패해도 숨김
+                    loadingOverlay.visibility = View.GONE  
                     Toast.makeText(this, "서버 연결 실패", Toast.LENGTH_SHORT).show()
                 }
             }
